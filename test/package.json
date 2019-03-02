@@ -4,16 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "jest": "^24.1.0"
+    "jest": "^24.1.0",
+    "npm-run-all": "^4.1.5"
   },
   "scripts": {
-    "test": "jest",
-    "test-custom-dir": "ALLURE_RESULT_FOLDER=custom-allure jest"
-  },
-  "jest": {
-    "reporters": [
-      "default",
-      "../dist/index.js"
-    ]
+    "allure-results": "ALLURE_RESULT_FOLDER=build/allure-results jest --config jest-allure.config.js sample",
+    "test": "jest src",
+    "verify": "run-s allure-results test"
   }
 }

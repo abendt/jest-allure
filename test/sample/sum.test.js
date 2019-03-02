@@ -1,5 +1,5 @@
 const sum = require('./sum');
-const Severity = require("../dist/Reporter").Severity;
+const Severity = require("../../dist/Reporter").Severity;
 
 describe("suite", () => {
     test('adds 1 + 2 to equal 3', () => {
