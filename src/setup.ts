@@ -1,6 +1,6 @@
 import Allure from "allure-js-commons";
 import stripAnsi from "strip-ansi";
-import { Reporter } from "./Reporter";
+import {Reporter} from "./Reporter";
 
 declare namespace jasmine {
     function getEnv(): any;
@@ -45,10 +45,10 @@ class JasmineAllureReporter implements jasmine.CustomReporter {
     specDone(spec: jasmine.CustomReporterResult) {
         let error;
         if (spec.status === "pending") {
-            error = { message: spec.pendingReason };
+            error = {message: spec.pendingReason};
         }
         if (spec.status === "disabled") {
-            error = { message: "This test was disabled" };
+            error = {message: "This test was disabled"};
         }
         const failure = spec.failedExpectations && spec.failedExpectations.length ? spec.failedExpectations[0] : undefined;
         if (failure) {
@@ -63,8 +63,11 @@ class JasmineAllureReporter implements jasmine.CustomReporter {
 }
 
 export function registerAllureReporter() {
+    const resultsDir = process.env.ALLURE_RESULT_FOLDER || "allure-results";
     const allure = new Allure();
-    const reporter = (global as any).reporter = new Reporter(allure);
+    allure.setOptions({targetDir: resultsDir});
+
+    (global as any).reporter = new Reporter(allure);
     jasmine.getEnv().addReporter(new JasmineAllureReporter(allure));
 }
 

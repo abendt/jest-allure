@@ -1,0 +1,19 @@
+{
+  "name": "jest-allure-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^24.1.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "test-custom-dir": "ALLURE_RESULT_FOLDER=custom-allure jest"
+  },
+  "jest": {
+    "reporters": [
+      "default",
+      "../dist/index.js"
+    ]
+  }
+}
